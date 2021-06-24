@@ -1,0 +1,19 @@
+{% extends "users/base.html" %}
+
+{% block head_content %}
+<title>Travelgram | Sign Up</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
+
+{% block container %}
+
+    <form action="{% url 'users:signup' %}" method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button class="btn btn-primary btn-block mt-5" type="submit">Sign Up</button>
+
+    </form>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+    <title>Travelgram</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock%}
+{% load humanize %}
+{% block container %}
+    <div class="container">
+        <div class="row">
+
+            {% for post in posts %}
+                {% include 'posts/post_card.html' %}
+            {% endfor %}
+        </div>
+    </div>
+    {% include 'pagination.html' %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+    <title>Travelgram</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock%}
+<!DOCTYPE html>
+{% block container %}
+
+    <div class="container">
+        <div class="row">
+            {% include "posts/post_card.html" %}
+        </div>
+    </div>
+
+{% endblock %}

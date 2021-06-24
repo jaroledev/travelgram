@@ -1,0 +1,32 @@
+{% extends 'users/base.html' %}
+{% block head_content %}
+<title>Travelgram login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock head_content %}
+
+{% block container %}
+    {% if form.errors %}
+        <p class="alert alert-danger">
+            Your username and password didn't match. Please try again
+        </p>
+    {% endif %}
+    <form method="POST" action="{% url 'users:login' %}" class="row g-3">
+        {% csrf_token %}
+        <div class="col-md-12">
+            <label for="validationCustomUsername" class="form-label">Username</label>
+            <div class="input-group">
+              <span class="input-group-text" id="arroba">@</span>
+              <input type="text" class="form-control" name="username" id="validationCustomUsername" aria-describedby="arroba" required>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label for="passwordid" class="form-label">Password</label>
+            <input type="password" class="form-control" id="passwordid" name="password" required>
+        </div>
+        <div class="d-grid gap-2 col-12 mx-auto">
+            <button class="btn btn-primary btn-block mt-5" type="submit">Login</button>
+        </div>
+    </form>
+    <p class="mt-4">No tienes cuenta aún? <a href="{% url 'users:signup' %}">Registrate aquí.</a></p>
+    
+{% endblock container %}
