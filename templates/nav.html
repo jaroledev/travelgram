@@ -1,12 +1,11 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg sticky-top" id="main-navbar">
+<nav class="navbar sticky-top navbar-light" id="main-navbar">
     <div class="container">
-        <a class="navbar-brand pr-5" style="border-right: 1px solid #efefef;" href="{% url 'posts:feed' %}">
-            <img src="{% static "img/logo.svg" %}" height="90" class="d-inline-block align-top"/>
+        <a class="navbar-brand pr-3" style="border-right: 1px solid #efefef;" href="{% url 'posts:feed' %}">
+            <img src="{% static "img/logo.svg" %}" height="80" class="d-inline-block align-top"/>
         </a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+            <ul class="navbar ml-auto">
+                <li class="nav-item d-inline-block">
                     <a href="{% url 'users:detail' request.user.username %}">
                         {% if request.user.profile.picture %}
                             <img src="{{request.user.profile.picture.url}}" height="45" class="d-inline-block align-top rounded-circle"/>
@@ -16,19 +15,18 @@
                     </a>
                 </li>
 
-                <li class="nav-item nav-icon">
+                <li class="nav-icon d-inline-block">
                     <a href={% url 'posts:create' %}>
                         <i class="fas fa-plus"></i>
                     </a>
                 </li>
 
-                <li class="nav-item nav-icon">
+                <li class="nav-icon d-inline-block">
                     <a href="{% url 'users:logout' %}">
                         <i class="fas fa-sign-out-alt"></i>
                     </a>
                 </li>
 
             </ul>
-        </div>
     </div>
 </nav>

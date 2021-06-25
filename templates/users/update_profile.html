@@ -8,32 +8,33 @@
 
 {% block container %}
 <div class="container">
-    <div class="row justify-content-md-center">
-        <div class="col-6 p-4" id="profile-box">
-            <form action="{% url 'users:update_profile' %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class='media'>
-                    {% if profile.picture %}
-                        <img src="{{ profile.picture.url }}" alt="" class="rounded-circle" height="50"/>
-                    {% else %}
-                        <img src="{% static 'img/default-profile.png' %}" class="rounded-circle" height="50"/>
-                    {% endif %}
-                    <div class="media-body">
-                        <h3 class="ml-4">Complete your profile</h3>
-                        <h5 class="ml-4">@{{ user.username }} | {{ user.get_full_name }}</h5>
-                        <p class="ml-4">Upload a profile photo<input type="file" name="picture"></p>
+    <div class="row">
+        <div class="col-12 sm-col-6 lg-col-4 p-4" id="profile-box">
+                <div class="form-group">
+                    <form action="{% url 'users:update_profile' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class='media'>
+                            {% if profile.picture %}
+                                <img src="{{ profile.picture.url }}" alt="" class="rounded-circle" height="35"/>
+                            {% else %}
+                                <img src="{% static 'img/default-profile.png' %}" class="rounded-circle" height="35"/>
+                            {% endif %}
+                            <div class="media-body">
+                                <h3 class="m-1">Complete your profile</h3>
+                                <h5 class="m-1">@{{ user.username }} | {{ user.get_full_name }}</h5>
+                                <label class="m-0">Upload a profile photo<input class="form-control" type="file" name="picture"></label>
+                            </div>
+                        </div>
+
+                    {% for error in form.picture.errors %}
+                    <div class="alert alert-danger">
+                        <b>Picture: </b>{{ error }}
                     </div>
+                    {% endfor %}
+
+                    <hr><br>
                 </div>
-
-                {% for error in form.picture.errors %}
-                <div class="alert alert-danger">
-                    <b>Picture: </b>{{ error }}
-                </div>
-                {% endfor %}
-
-                <hr><br>
-
-                {# Website field #}
+                    {# Website field #}
                 <div class="form-group">
                     <label>Website</label>
                     <input
@@ -87,5 +88,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}
